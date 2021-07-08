@@ -1,16 +1,19 @@
-import { useSelector } from 'react-redux'
-import { selectGeneration, changeGeneration } from 'stores/generation'
 import { css } from '@emotion/react'
 import style from 'styles/'
+//storeの利用
+import { useSelector } from 'react-redux'
+import { RootState } from 'stores/'
 
 type Props = {
-  operatorType: '+' | '-' | '×' | '÷' | '='
+  operatorType: '+' | '-' | '×' | '÷' | '=' | ''
   onClick: () => void
 }
 
 export const OperatorButton: React.VFC<Props> = ({ operatorType, onClick }) => {
-  // const operator = useSelector(selectOperator)
-  const operator = '+'
+  //値の取得
+  const operator = useSelector(
+    (state: RootState): any => state.calculateReducer.operator,
+  )
 
   return (
     <button
