@@ -1,11 +1,11 @@
 import { css, SerializedStyles } from '@emotion/react'
-import config from 'styles/config'
+import config from './config'
 import mixin from './mixin'
 import calc from './calc'
 import colors from './colors'
 import easing from './easing'
 
-const sp = (style: SerializedStyles): SerializedStyles => {
+export const sp = (style: SerializedStyles): SerializedStyles => {
   return css`
     @media screen and (max-width: ${config.sp.breakpoint - 1}px) {
       ${style}
@@ -13,7 +13,7 @@ const sp = (style: SerializedStyles): SerializedStyles => {
   `
 }
 
-const tab = (style: SerializedStyles): SerializedStyles => {
+export const tab = (style: SerializedStyles): SerializedStyles => {
   return css`
     @media screen and (min-width: ${config.sp
         .breakpoint}px) and (max-width: ${config.tab.breakpoint}px) {
@@ -22,7 +22,7 @@ const tab = (style: SerializedStyles): SerializedStyles => {
   `
 }
 
-const pc = (style: SerializedStyles): SerializedStyles => {
+export const pc = (style: SerializedStyles): SerializedStyles => {
   return css`
     @media screen and (min-width: ${config.sp.breakpoint}px) {
       ${style}

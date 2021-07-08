@@ -1,6 +1,5 @@
 import { AppProps } from 'next/app'
 
-import { Layout } from 'containers/templates/Layout'
 // import { RecoilRoot } from 'recoil'
 import { Provider } from 'react-redux'
 import { store } from 'stores'
@@ -12,9 +11,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     <>
       <Global styles={globalStyles} />
       <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </Provider>
     </>
   )

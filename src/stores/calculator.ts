@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from './'
+import { RootState } from '.'
 
 //型宣言
 type Generation = {
@@ -23,11 +23,7 @@ export const generationSlice = createSlice({
       //第二引数は渡されたaction
       //action.payloadプロパティに、Action Creatorに渡された引数が入っている
       //この関数は新しい状態を返却する
-      if (state.generation == 'First') {
-        state.generation = state.generation + action.payload
-      } else {
-        state.generation = action.payload
-      }
+      state.generation = action.payload
     },
     //追加のaction
     // clearName: (state) => {

@@ -1,6 +1,6 @@
 /* eslint-disable*/
 import { css } from '@emotion/react'
-import index from './index'
+import style from './index'
 
 const reset = css`
   html,
@@ -136,20 +136,22 @@ const reset = css`
 `
 
 const font = css`
-  body {
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
-      'Hiragino Sans', Meiryo, sans-serif;
+  @font-face {
+    font-family: 'Oswald-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Oswald-Regular.ttf') format('truetype');
   }
 `
 
-const globalStyles = css`
+export const globalStyles = css`
   ${reset}
   ${font}
 
   html {
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
-      'Hiragino Sans', Meiryo, sans-serif;
-    font-weight: 500;
+    font-family: 'Oswald-Regular', 'Helvetica Neue', Arial,
+      'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    font-weight: 400;
     font-size: 15px;
     line-height: 1.5;
     word-wrap: break-word;
@@ -204,16 +206,14 @@ const globalStyles = css`
     outline: none;
     background: transparent;
   }
-  ${index.pc(css`
+  ${style.pc(css`
     .sp-only {
       display: none !important;
     }
   `)}
-  ${index.sp(css`
+  ${style.sp(css`
     .pc-only {
       display: none !important;
     }
   `)}
 `
-
-export { globalStyles }
