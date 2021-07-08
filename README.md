@@ -1,9 +1,14 @@
-# Next.js Template
+# calcurator-app
+
+シンプルな電卓です。
+https://calculator-app-gamma.vercel.app/
 
 ## 構成
 
 - Next.js
 - Emotion
+- Redux
+- Redux-Toolkit
 - TypeScript
 - ESLint
 - Prettier
