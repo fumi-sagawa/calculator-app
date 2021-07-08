@@ -1,19 +1,26 @@
 import { NextPage } from 'next'
 import { css } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectGeneration, changeGeneration } from 'stores/generation'
+import { inputNumber } from 'stores/calculator'
+import { RootState } from 'stores/'
 import { ButtonContainer } from 'containers/ButtonContainer'
 import { DisplayContainer } from 'containers/displayContainer'
 import style from 'styles/'
 
 const Home: NextPage = () => {
-  const generation = useSelector(selectGeneration)
+  const result = useSelector(
+    (state: RootState): any => state.calculateReducer.inputValue,
+  )
   const dispatch = useDispatch()
 
   return (
     <div css={wrapper}>
       <DisplayContainer />
       <ButtonContainer />
+      <div css={test}>{result}</div>
+      <button css={test} onClick={() => dispatch(inputNumber(100))}>
+        100
+      </button>
     </div>
   )
 }
@@ -29,30 +36,6 @@ const wrapper = css`
   row-gap: 16px;
 `
 
-//見本
-// const Home: NextPage = () => {
-//   const generation = useSelector(selectGeneration)
-//   const dispatch = useDispatch()
-
-//   return (
-//     <div css={test}>
-//       <div>Generation is {generation}</div>
-//       <div>
-//         <button
-//           type="button"
-//           onClick={() => {
-//             dispatch(changeGeneration('First'))
-//           }}
-//         >
-//           First Generation
-//         </button>
-//         <button
-//           type="button"
-//           onClick={() => dispatch(changeGeneration('Second'))}
-//         >
-//           Second Generation
-//         </button>
-//       </div>
-//     </div>
-//   )
-// }
+const test = css`
+  color: white;
+`

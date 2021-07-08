@@ -2,6 +2,7 @@ import { css } from '@emotion/react'
 import style from 'styles/'
 
 export const Result: React.VFC = () => {
+  //受け取ってきて表示
   return <div css={input}>123,456,789</div>
 }
 
