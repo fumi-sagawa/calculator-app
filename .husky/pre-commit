@@ -1,0 +1,4 @@
+# yarn lint-stagedを実行
+yarn lint-staged
+# yarn check-typesを実行
+yarn check-types
