@@ -91,7 +91,7 @@ export const ButtonContainer: React.FC = () => {
           />
           <OperatorButton
             operatorType={'+'}
-            imgSrc={'/divide.svg'}
+            imgSrc={'/plus.svg'}
             onClick={() => dispatch(operate('+'))}
           />
           <OperatorButton

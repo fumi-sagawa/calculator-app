@@ -44,12 +44,10 @@ const button = css`
 //storeのoperatorと一致していない場合のスタイル
 const buttonNotSelected = css`
   ${button}
-  color: ${style.colors.White};
   background-color: ${style.colors.Orange};
 `
 //storeのoperatorと一致している場合のスタイル
 const buttonSelected = css`
   ${button}
-  color: ${style.colors.Orange};
-  background-color: ${style.colors.White};
+  background-color: ${style.colors.LightOrange};
 `
