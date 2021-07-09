@@ -1,7 +1,7 @@
 # calcurator-app
 
-シンプルな電卓です。
-https://calculator-app-gamma.vercel.app/
+シンプルな電卓です。  
+https://calculator-app-seven.vercel.app/
 
 ## 構成
 
