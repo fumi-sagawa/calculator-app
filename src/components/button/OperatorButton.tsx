@@ -7,9 +7,14 @@ import { RootState } from 'stores/'
 type Props = {
   operatorType: '+' | '-' | '×' | '÷' | '=' | ''
   onClick: () => void
+  imgSrc: string
 }
 
-export const OperatorButton: React.VFC<Props> = ({ operatorType, onClick }) => {
+export const OperatorButton: React.VFC<Props> = ({
+  operatorType,
+  onClick,
+  imgSrc,
+}) => {
   //値の取得
   const operator = useSelector(
     (state: RootState): any => state.calculateReducer.operator,
@@ -20,7 +25,7 @@ export const OperatorButton: React.VFC<Props> = ({ operatorType, onClick }) => {
       css={operator === operatorType ? buttonSelected : buttonNotSelected}
       onClick={onClick}
     >
-      {operatorType}
+      <img src={imgSrc} alt={operatorType} />
     </button>
   )
 }

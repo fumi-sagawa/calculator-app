@@ -1,6 +1,6 @@
 # calcurator-app
 
-シンプルな電卓です。(開発中)
+シンプルな電卓です。
 https://calculator-app-gamma.vercel.app/
 
 ## 構成
@@ -40,3 +40,15 @@ yarn start
 ## Next.js
 
 - [fumi-sagawa/next-template](https://github.com/fumi-sagawa/next-template)
+
+## 電卓機能
+
+- [『React』+『Redux』で iPhone に入ってるような電卓を作ってみよう！](https://qiita.com/micropig3402/items/d1221652cdc6a4efccbe)
+- [電卓アプリで学ぶ React/Redux 入門(実装編)](https://qiita.com/nishina555/items/9ff744a897af8ed1679b)
+
+参考文献と比較して
+
+- 入力値を基本文字列として扱う
+- 機能の追加
+
+などの違いがあります。

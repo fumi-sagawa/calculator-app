@@ -76,22 +76,27 @@ export const ButtonContainer: React.FC = () => {
         <div css={operatorGrid}>
           <OperatorButton
             operatorType={'÷'}
+            imgSrc={'/divide.svg'}
             onClick={() => dispatch(operate('÷'))}
           />
           <OperatorButton
             operatorType={'×'}
+            imgSrc={'/multiply.svg'}
             onClick={() => dispatch(operate('×'))}
           />
           <OperatorButton
             operatorType={'-'}
+            imgSrc={'/minus.svg'}
             onClick={() => dispatch(operate('-'))}
           />
           <OperatorButton
             operatorType={'+'}
+            imgSrc={'/divide.svg'}
             onClick={() => dispatch(operate('+'))}
           />
           <OperatorButton
             operatorType={'='}
+            imgSrc={'/equal.svg'}
             onClick={() => dispatch(equal())}
           />
         </div>
