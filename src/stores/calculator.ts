@@ -59,8 +59,18 @@ export const calculateSlice = createSlice({
         state.inputValue = '0.'
         state.inputValueAll = state.inputValueAll + '0.'
       } else {
-        state.inputValue = state.inputValue + '.'
-        state.inputValueAll = state.inputValueAll + '.'
+        //計算直後は数値をインプットする際に計算結果を初期化
+        if (state.initializeOnInputNumber === true) {
+          state.inputValue = '0.'
+          state.inputValueAll = '0.'
+          //初期化
+          state.calculatable = true
+          state.initializeOnInputNumber = false
+          state.operator = ''
+        } else {
+          state.inputValue = state.inputValue + '.'
+          state.inputValueAll = state.inputValueAll + '.'
+        }
       }
       state.displayValue = state.inputValue
       state.dicimalPoint = true
@@ -72,6 +82,7 @@ export const calculateSlice = createSlice({
       //末尾が小数点の場合0をつける
       if (state.inputValueAll.slice(-1).match('\\.')) {
         state.inputValue = state.inputValue + '0'
+        state.displayValue = state.inputValue
         state.inputValueAll = state.inputValueAll + '0'
       }
 
@@ -89,7 +100,7 @@ export const calculateSlice = createSlice({
 
       //末尾が小数点の場合0をつける
       if (state.inputValueAll.slice(-1).match('\\.')) {
-        state.inputValue = state.inputValue + '0'
+        // state.inputValue = state.inputValue + '0'
         state.inputValueAll = state.inputValueAll + '0'
       }
 

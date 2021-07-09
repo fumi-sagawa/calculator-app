@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { css } from '@emotion/react'
 import { ButtonContainer } from 'components/containers/ButtonContainer'
-import { DisplayContainer } from 'components/containers/displayContainer'
+import { DisplayContainer } from 'components/containers/DisplayContainer'
 import style from 'styles/'
 
 const Home: NextPage = () => {
