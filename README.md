@@ -1,6 +1,6 @@
 # calcurator-app
 
-シンプルな電卓です。
+シンプルな電卓です。(開発中)
 https://calculator-app-gamma.vercel.app/
 
 ## 構成

@@ -7,7 +7,8 @@ type Calculator = {
   operator: '+' | '-' | '×' | '÷' | '=' | ''
   inputValueAll: string
   displayValue: string
-  calculated: boolean
+  calculatable: boolean
+  initializeOnInputNumber: boolean
 }
 
 //Stateの初期状態
@@ -17,7 +18,8 @@ const initialState: Calculator = {
   operator: '',
   inputValueAll: '',
   displayValue: '0',
-  calculated: false,
+  calculatable: false,
+  initializeOnInputNumber: false,
 }
 
 //Sliceを生成,Reducer利用のためエクスポートする
@@ -29,36 +31,70 @@ export const calculateSlice = createSlice({
   reducers: {
     //ここに定義したキーがAction Creator関数の名前となり,自動生成される
     inputNumber: (state, action) => {
-      //第一引数は現在(更新前)のState
-      //第二引数は渡されたaction
-      //action.payloadプロパティに、Action Creatorに渡された引数が入っている
-      //この関数は新しい状態を返却する
-      state.inputValueAll = state.inputValueAll + action.payload
-      state.inputValue = state.inputValue + action.payload
-      state.displayValue = state.inputValue
+      if (state.initializeOnInputNumber === true) {
+        //計算後は数値をインプットする際に計算結果を初期化
+        state.inputValueAll = action.payload
+        state.inputValue = action.payload
+        state.displayValue = state.inputValue
+        //初期化
+        state.calculatable = true
+        state.initializeOnInputNumber = false
+        state.operator = ''
+      } else {
+        state.inputValueAll = state.inputValueAll + action.payload
+        state.inputValue = state.inputValue + action.payload
+        state.displayValue = state.inputValue
+        //初期化
+        state.calculatable = true
+        state.operator = ''
+      }
     },
     //小数点の切り替え
     activateDisimal: (state) => {
-      if (state.dicimalPoint === false) {
-        state.inputValueAll = state.inputValueAll + '.'
-        state.inputValue = state.inputValue + '.'
-        state.displayValue = state.inputValue
-        state.dicimalPoint = true
+      //小数点が連続した際は再代入させない
+      if (state.dicimalPoint === true) return
+
+      if (state.inputValue === '') {
+        //小数点だけが入力された場合自動で先頭に0をつける
+        state.inputValue = '0.'
+        state.inputValueAll = state.inputValueAll + '0.'
       } else {
-        //小数点が連続した際は再代入させない
-        return
+        state.inputValue = state.inputValue + '.'
+        state.inputValueAll = state.inputValueAll + '.'
       }
+      state.displayValue = state.inputValue
+      state.dicimalPoint = true
     },
-    calculate: (state, action) => {
+    operate: (state, action) => {
+      // 画面に数字がインプットされていない場合は返す
+      if (state.inputValue === '') return
+
+      //末尾が小数点の場合0をつける
+      if (state.inputValueAll.slice(-1).match('\\.')) {
+        state.inputValue = state.inputValue + '0'
+        state.inputValueAll = state.inputValueAll + '0'
+      }
+
       state.inputValueAll = state.inputValueAll + action.payload
       state.operator = action.payload
-      //入力値と小数点を初期化
+      //初期化
       state.inputValue = ''
       state.dicimalPoint = false
-      //もしも掛け算か割り算ならdisplayvalue変えちゃおうか
+      state.calculatable = false
+      state.initializeOnInputNumber = false
     },
     equal: (state) => {
-      const replaceOperator = state.inputValueAll
+      //inputAllValueの末尾が数字,小数点でなければ計算不可能であるため返す
+      if (!state.inputValueAll.slice(-1).match(/^([1-9\\.]\d*|0)$/)) return
+
+      //末尾が小数点の場合0をつける
+      if (state.inputValueAll.slice(-1).match('\\.')) {
+        state.inputValue = state.inputValue + '0'
+        state.inputValueAll = state.inputValueAll + '0'
+      }
+
+      //演算子を計算可能な記号に置き換え
+      const replaceOperator: string = state.inputValueAll
         .replace(/×/g, '*')
         .replace(/÷/g, '/')
       //計算を実行
@@ -69,6 +105,7 @@ export const calculateSlice = createSlice({
       //入力値と小数点を初期化
       state.inputValue = '0'
       state.dicimalPoint = false
+      state.initializeOnInputNumber = true
     },
     clear: (state) => {
       state.inputValue = ''
@@ -76,11 +113,11 @@ export const calculateSlice = createSlice({
       state.operator = ''
       state.inputValueAll = ''
       state.displayValue = '0'
-      state.calculated = false
+      state.initializeOnInputNumber = false
     },
   },
 })
 
 // Action Creatorをエクスポートする
-export const { inputNumber, activateDisimal, calculate, equal, clear } =
+export const { inputNumber, activateDisimal, operate, equal, clear } =
   calculateSlice.actions

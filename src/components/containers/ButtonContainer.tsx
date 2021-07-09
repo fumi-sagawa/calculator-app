@@ -8,15 +8,12 @@ import { useDispatch } from 'react-redux'
 import {
   inputNumber,
   activateDisimal,
-  calculate,
+  operate,
   equal,
   clear,
 } from 'stores/calculator'
 
 export const ButtonContainer: React.FC = () => {
-  const onClick = () => {
-    alert('test!')
-  }
   const dispatch = useDispatch()
   return (
     <>
@@ -79,19 +76,19 @@ export const ButtonContainer: React.FC = () => {
         <div css={operatorGrid}>
           <OperatorButton
             operatorType={'÷'}
-            onClick={() => dispatch(calculate('÷'))}
+            onClick={() => dispatch(operate('÷'))}
           />
           <OperatorButton
             operatorType={'×'}
-            onClick={() => dispatch(calculate('×'))}
+            onClick={() => dispatch(operate('×'))}
           />
           <OperatorButton
             operatorType={'-'}
-            onClick={() => dispatch(calculate('-'))}
+            onClick={() => dispatch(operate('-'))}
           />
           <OperatorButton
             operatorType={'+'}
-            onClick={() => dispatch(calculate('+'))}
+            onClick={() => dispatch(operate('+'))}
           />
           <OperatorButton
             operatorType={'='}

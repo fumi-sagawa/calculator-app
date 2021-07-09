@@ -14,6 +14,7 @@ export const AllInput: React.VFC = () => {
 }
 
 const result = css`
+  min-height: 44px;
   font-size: 32px;
   color: ${style.colors.White};
   line-height: 1;

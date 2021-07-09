@@ -1,20 +1,10 @@
 import { NextPage } from 'next'
 import { css } from '@emotion/react'
-import { ButtonContainer } from 'containers/ButtonContainer'
-import { DisplayContainer } from 'containers/displayContainer'
+import { ButtonContainer } from 'components/containers/ButtonContainer'
+import { DisplayContainer } from 'components/containers/displayContainer'
 import style from 'styles/'
-//storeの利用
-import { useSelector, useDispatch } from 'react-redux'
-import { inputNumber } from 'stores/calculator'
-import { RootState } from 'stores/'
 
 const Home: NextPage = () => {
-  //値の取得
-  const inputValueVar = useSelector(
-    (state: RootState): any => state.calculateReducer.inputValue,
-  )
-  const dispatch = useDispatch()
-
   return (
     <div css={wrapper}>
       <DisplayContainer />
@@ -32,8 +22,4 @@ const wrapper = css`
 
   display: grid;
   row-gap: 16px;
-`
-
-const test = css`
-  color: white;
 `
